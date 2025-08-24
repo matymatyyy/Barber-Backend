@@ -1,0 +1,53 @@
+networks:
+  programacionIII-chacabuco.network:
+    driver: bridge
+
+services:
+  php-apache:
+    build: './build/php'
+    restart: unless-stopped
+    container_name: programacionIII-chacabuco.php-apache
+    tty: true
+    depends_on:
+      - mysql
+    networks:
+      - programacionIII-chacabuco.network
+    ports:
+      - "91:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www/html:rw
+      - ./data/apache/logs:/var/log/apache2
+
+  mysql:
+    image: mysql:5
+    restart: unless-stopped
+    container_name: programacionIII-chacabuco.mysql
+    tty: true
+    ports:
+      - "3310:3306"
+    networks:
+      - programacionIII-chacabuco.network
+    volumes:
+      - "./build/mysql/mysql.cnf:/etc/mysql/conf.d/custom.cnf:ro"
+      - "./data/mysql/dbdata:/var/lib/mysql"
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-development}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-mysql}
+      MYSQL_USER: ${MYSQL_USER:-mysql}
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: programacionIII-chacabuco.phpmyadmin
+    tty: true
+    depends_on:
+      - mysql
+    ports:
+      - "8080:80"
+    networks:
+      - programacionIII-chacabuco.network
+    environment:
+      PMA_HOST: mysql
+      PMA_ARBITRARY: 1
+      PMA_PORT: 3306
