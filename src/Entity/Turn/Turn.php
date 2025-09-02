@@ -20,11 +20,30 @@ final class Turn{
         DateTime $date,
         DateTime $hourBegin,
         DateTime $hourEnd,
-        ?bool $state
+        ?bool $state,
+        ?int $barberId = null,
+        ?int $clientId = null
         ): self
     {
-        return new self(null,null,null,$date,$hourBegin,$hourEnd, $state);
-    } 
+        return new self(null,$barberId,$clientId,$date,$hourBegin,$hourEnd, $state);
+    }
+
+    public function modify(
+        ?int $barberId,
+        ?int $clientId,
+        DateTime $date,
+        DateTime $hourBegin,
+        DateTime $hourEnd,
+        ?bool $state
+        ): void
+    {
+        $this->barberId = $barberId;
+        $this->clientId = $clientId;
+        $this->date = $date;
+        $this->hourBegin = $hourBegin;
+        $this->hourEnd = $hourEnd;
+        $this->state = $state;
+    }
 
     public function id(): ?int
     {
