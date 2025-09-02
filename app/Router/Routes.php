@@ -22,6 +22,12 @@ function startRouter(): Router
     include_once "Routes/TurnRoutes.php";
     $routes = array_merge($routes, TurnRoutes::getRoutes());
 
+    include_once "Routes/TurnConfigRoutes.php";
+    $routes = array_merge($routes, TurnConfigRoutes::getRoutes());
+    
+    include_once "Routes/TurnConfigDayRoutes.php";
+    $routes = array_merge($routes, TurnConfigDayRoutes::getRoutes());
+
     $routesClass = [];
     foreach ($routes as $route) {
         $routesClass[] = Route::fromArray($route);
