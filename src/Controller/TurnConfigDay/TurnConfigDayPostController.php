@@ -14,17 +14,18 @@ final readonly class TurnConfigDayPostController extends AuthMiddleware {
     public function start(): void 
     {
         $turnConfigId = ControllerUtils::getPost("turnConfigId");
+        $day = ControllerUtils::getPost("day");
+        $turnTime  = ControllerUtils::getPost("turnTime");
         $hourBegin = ControllerUtils::getPost("hourBegin");
         $hourEnd = ControllerUtils::getPost("hourEnd");
-        $day = ControllerUtils::getPost("day");
-        $turnTime  = ControllerUtils::getPost("turnTime ");
+       
 
         $this->service->create(
             $turnConfigId,
        $day,
-         $turnTime,
-           $hourBegin,
-        $hourEnd,
+         new DateTime($turnTime),
+           new DateTime($hourBegin),
+        new DateTime($hourEnd),
         );
     }
 }

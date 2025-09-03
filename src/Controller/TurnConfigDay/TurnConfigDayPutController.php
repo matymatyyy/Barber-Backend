@@ -13,18 +13,18 @@ final readonly class TurnConfigDayPutController {
     public function start(int $id): void 
     {
         $turnConfigId = ControllerUtils::getPost("turnConfigId");
+        $day = ControllerUtils::getPost("day");
         $hourBegin = ControllerUtils::getPost("hourBegin");
         $hourEnd = ControllerUtils::getPost("hourEnd");
-        $day = ControllerUtils::getPost("day");
         $turnTime  = ControllerUtils::getPost("turnTime ");
 
         $this->service->update(
               $id,
         $turnConfigId,
         $day,
-            $turnTime,
        $hourBegin,
-         $hourEnd
+         $hourEnd,
+         $turnTime
         );
     }
 }

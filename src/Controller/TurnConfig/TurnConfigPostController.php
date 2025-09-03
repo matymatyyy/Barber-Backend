@@ -13,7 +13,7 @@ final readonly class TurnConfigPostController extends AuthMiddleware {
 
     public function start(): void 
     {
-        $barberId  = ControllerUtils::getPost("barberId ");
+        $barberId  = ControllerUtils::getPost("id_barber");
 
         $this->service->create(
         $barberId,

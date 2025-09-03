@@ -67,15 +67,14 @@ final readonly class TurnConfigDayModel extends DatabaseModel {
                             turns_config_day
                         (id,
                             id_turns_config,
-                            id_client,
                             day,
                             hour_begin,
                             hour_end,
                             turn_time)
                             VALUES
-                        (:id,
+                        (
+                            :id,
                             :id_turns_config,
-                            :id_client,
                             :day,
                             :hour_begin,
                             :hour_end,
@@ -84,11 +83,11 @@ final readonly class TurnConfigDayModel extends DatabaseModel {
 
         $parameters = [
             "id" => $turnConfigDay->id(),
-            "turnConfigId" => $turnConfigDay->turnConfigId(),
+            "id_turns_config" => $turnConfigDay->turnConfigId(),
             'day' => $turnConfigDay->day(),
-            'hourBegin' => $turnConfigDay->hourBegin(),
-            'hourEnd' => $turnConfigDay->hourEnd(),
-            'turnTime' => $turnConfigDay->turnTime()
+            'hour_begin' => $turnConfigDay->hourBegin()->format("Y-m-d H:i:s"),
+            'hour_end' => $turnConfigDay->hourEnd()->format("Y-m-d H:i:s"),
+            'turn_time' => $turnConfigDay->turnTime()->format("Y-m-d H:i:s")
 
         ];
 
