@@ -1,13 +1,13 @@
 <?php 
 
 use Src\Utils\ControllerUtils;
-use Src\Service\User\UserLoginService;
+use Src\Service\Client\ClientLoginService;
 
-final readonly class UserLoginController {
-    private UserLoginService $service;
+final readonly class ClientLoginController {
+    private ClientLoginService $service;
 
     public function __construct() {
-        $this->service = new UserLoginService();
+        $this->service = new ClientLoginService();
     }
 
     public function start(): void 
@@ -15,10 +15,10 @@ final readonly class UserLoginController {
         $email = ControllerUtils::getPost("email");
         $password = ControllerUtils::getPost("password");
         
-        $user = $this->service->login($email, $password);
+        $client = $this->service->login($email, $password);
      
         echo json_encode([
-            "token" => $user->token(),
+            "token" => $client->token(),
         ]);
     }
 }
