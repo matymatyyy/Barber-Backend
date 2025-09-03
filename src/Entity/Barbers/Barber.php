@@ -44,7 +44,7 @@ final class Barber {
     {
         $this->name = $name;
         $this->email = $email;
-        $this->password = $password;
+        $this->password = password_hash($password, PASSWORD_BCRYPT);
         $this->dni = $dni;
         $this->cellphone = $cellphone;
     } 

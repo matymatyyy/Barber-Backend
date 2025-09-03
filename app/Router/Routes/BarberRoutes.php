@@ -5,7 +5,7 @@ final readonly class BarberRoutes {
     return [
       [
         "name" => "barber_login",
-        "url" => "login",
+        "url" => "login/admin",
         "controller" => "Barber/BarberLoginController.php",
         "method" => "POST"
       ],

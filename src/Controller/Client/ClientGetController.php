@@ -1,9 +1,9 @@
 <?php 
 
-use Src\Middleware\AuthMiddleware;
+use Src\Middleware\ClientAuthMiddleware;
 use Src\Service\Client\ClientFinderService;
 
-final readonly class ClientGetController extends AuthMiddleware {
+final readonly class ClientGetController extends ClientAuthMiddleware {
     private ClientFinderService $service;
 
     public function __construct() {

@@ -1,9 +1,9 @@
 <?php 
 
-use Src\Middleware\AuthMiddleware;
+use Src\Middleware\BarberAuthMiddleware;
 use Src\Service\Barber\BarberFinderService;
 
-final readonly class BarberGetController extends AuthMiddleware {
+final readonly class BarberGetController extends BarberAuthMiddleware {
     private BarberFinderService $service;
 
     public function __construct() {

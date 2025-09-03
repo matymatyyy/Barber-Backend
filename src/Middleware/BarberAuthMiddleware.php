@@ -2,12 +2,12 @@
 
 namespace Src\Middleware;
 
-use Src\Service\User\UserTokenValidatorService;
+use Src\Service\Barber\BarberTokenValidatorService;
 
-readonly class AuthMiddleware {
-	private UserTokenValidatorService $tokenValidator;
+readonly class BarberAuthMiddleware {
+	private BarberTokenValidatorService $tokenValidator;
 	public function __construct() {
-		$this->tokenValidator = new UserTokenValidatorService();
+		$this->tokenValidator = new BarberTokenValidatorService();
 		$this->validate();
 	}
 
