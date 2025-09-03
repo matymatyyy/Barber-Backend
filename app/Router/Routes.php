@@ -10,8 +10,8 @@ function startRouter(): Router
     include_once "Routes/DomainRoutes.php";
     $routes = array_merge($routes, DomainRoutes::getRoutes());
 
-    include_once "Routes/UserRoutes.php";
-    $routes = array_merge($routes, UserRoutes::getRoutes());
+    include_once "Routes/ClientRoutes.php";
+    $routes = array_merge($routes, ClientRoutes::getRoutes());
 
     include_once "Routes/FileRoutes.php";
     $routes = array_merge($routes, FileRoutes::getRoutes());
