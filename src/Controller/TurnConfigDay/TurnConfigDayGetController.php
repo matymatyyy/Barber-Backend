@@ -1,13 +1,11 @@
 <?php 
 
-use Src\Middleware\AuthMiddleware;
 use Src\Service\TurnConfigDay\TurnConfigDayFinderService;
 
-final readonly class TurnConfigDayGetController extends AuthMiddleware {
+final readonly class TurnConfigDayGetController {
     private TurnConfigDayFinderService $service;
 
     public function __construct() {
-        parent::__construct();
         $this->service = new TurnConfigDayFinderService();
     }
 

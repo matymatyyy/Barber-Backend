@@ -1,13 +1,11 @@
 <?php 
 
-use Src\Middleware\AuthMiddleware;
 use Src\Service\Service\ServiceFinderService;
 
-final readonly class ServiceGetController extends AuthMiddleware {
+final readonly class ServiceGetController{
     private ServiceFinderService $service;
 
     public function __construct() {
-        parent::__construct();
         $this->service = new ServiceFinderService();
     }
 
