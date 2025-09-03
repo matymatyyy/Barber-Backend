@@ -12,9 +12,9 @@ final readonly class ServicePutController {
 
     public function start(int $id): void 
     {
-        $name = ControllerUtils::getPost("name");
-        $code = ControllerUtils::getPost("code");
+        $type = ControllerUtils::getPost("type");
+        $price = ControllerUtils::getPost("price");
 
-        $this->service->update($name, $code, $id);
+        $this->service->update($type, $price, $id);
     }
 }

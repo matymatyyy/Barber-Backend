@@ -94,10 +94,10 @@ final readonly class ServiceModel extends DatabaseModel {
     public function delete(int $id): void
     {
         $query = <<<DELETE_QUERY
-                    Delete FROM
-                        services S
+                    DELETE FROM
+                        services 
                     WHERE
-                        S.id = :id
+                        id = :id
                 DELETE_QUERY;
 
         $parameters = [

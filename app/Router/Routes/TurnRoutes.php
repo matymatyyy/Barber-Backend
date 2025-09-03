@@ -20,7 +20,7 @@ final readonly class TurnRoutes
             [
                 "name" => "turns_get",
                 "url" => "/turns",
-                "controller" => "Turn/TurnGetsController.php",
+                "controller" => "Turn/TurnsGetController.php",
                 "method" => "GET"
             ],
             [

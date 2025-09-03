@@ -116,10 +116,10 @@ final readonly class TurnModel extends DatabaseModel {
     public function delete(int $id): void
     {
         $query = <<<DELETE_QUERY
-                    Delete FROM
-                        turns D
+                    DELETE FROM
+                        turns   
                     WHERE
-                        D.id = :id
+                        id = :id
                 DELETE_QUERY;
 
         $parameters = [

@@ -13,9 +13,9 @@ final readonly class ServicePostController extends AuthMiddleware {
 
     public function start(): void 
     {
-        $status = ControllerUtils::getPost("status");
+        $type = ControllerUtils::getPost("type");
         $price = ControllerUtils::getPost("price");
 
-        $this->service->create($status, $price);
+        $this->service->create($type, $price);
     }
 }
