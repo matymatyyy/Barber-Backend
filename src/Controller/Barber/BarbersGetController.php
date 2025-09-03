@@ -1,33 +1,33 @@
 <?php
 
-use Src\Entity\Client\Client;
-use Src\Service\Client\ClientsSearcherService;
+use Src\Entity\Barber\Barber;
+use Src\Service\Barber\BarbersSearcherService;
 
-final readonly class ClientsGetController {
-    private ClientsSearcherService $service;
+final readonly class BarbersGetController {
+    private BarbersSearcherService $service;
 
     public function __construct() {
-        $this->service = new ClientsSearcherService();
+        $this->service = new BarbersSearcherService();
     }
 
     public function start(): void
     {
-        $clients = $this->service->search();
+        $barbers = $this->service->search();
 
         echo json_encode([
-            "data" => array_map($this->toResponse(), $clients),
+            "data" => array_map($this->toResponse(), $barbers),
         ]);
     }
 
     protected function toResponse(): Closure
     {
-        return fn (Client $client): array => [
-            'id' => $client->id(),
-            'name' => $client->name(),
-            'email' => $client->email(),
-            'password' => $client->password(),
-            'dni' => $client->dni(),
-            'cellphone' => $client->cellphone()
+        return fn (Barber $barber): array => [
+            'id' => $barber->id(),
+            'name' => $barber->name(),
+            'email' => $barber->email(),
+            'password' => $barber->password(),
+            'dni' => $barber->dni(),
+            'cellphone' => $barber->cellphone()
         ];
     }
 }
