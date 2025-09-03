@@ -1,13 +1,13 @@
 <?php 
 
 use Src\Utils\ControllerUtils;
-use Src\Service\Client\ClientUpdaterService;
+use Src\Service\Barber\BarberUpdaterService;
 
-final readonly class ClientPutController {
-    private ClientUpdaterService $service;
+final readonly class BarberPutController {
+    private BarberUpdaterService $service;
 
     public function __construct() {
-        $this->service = new ClientUpdaterService();
+        $this->service = new BarberUpdaterService();
     }
 
     public function start(int $id): void 
