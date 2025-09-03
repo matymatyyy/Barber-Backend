@@ -16,7 +16,6 @@ final readonly class ClientRoutes {
         "method" => "POST",
       ],
       [
-        [
           "name" => "client_update",
           "url" => "/clients",
           "controller" => "Client/ClientPutController.php",
@@ -26,7 +25,6 @@ final readonly class ClientRoutes {
               "name" => "id",
               "type" => "int"
             ]
-          ]
         ]
       ],
       [

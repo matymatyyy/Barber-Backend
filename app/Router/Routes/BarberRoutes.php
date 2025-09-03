@@ -16,7 +16,6 @@ final readonly class BarberRoutes {
         "method" => "POST",
       ],
       [
-        [
           "name" => "barber_update",
           "url" => "/barbers",
           "controller" => "Barber/BarberPutController.php",
@@ -27,7 +26,6 @@ final readonly class BarberRoutes {
               "type" => "int"
             ]
           ]
-        ]
       ],
       [
         "name" => "barber_detele",
