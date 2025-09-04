@@ -6,9 +6,9 @@ final readonly class ServiceRoutes
     {
         return [
             [
-                "name" => "Services_get",
-                "url" => "/Services",
-                "controller" => "Service/ServiceGetsController.php",
+                "name" => "service_get",
+                "url" => "/services",
+                "controller" => "Service/ServiceGetController.php",
                 "method" => "GET",
                 "parameters" => [
                     [
@@ -18,33 +18,31 @@ final readonly class ServiceRoutes
                 ]
             ],
             [
-                "name" => "Service_get",
-                "url" => "/Services",
-                "controller" => "Service/ServiceGetController.php",
+                "name" => "services_get",
+                "url" => "/services",
+                "controller" => "Service/ServicesGetController.php",
                 "method" => "GET"
             ],
             [
-                "name" => "services_create",
+                "name" => "service_create",
                 "url" => "/services",
                 "controller" => "Service/ServicePostController.php",
                 "method" => "POST"
             ],
             [
-                [
-                    "name" => "service_update",
-                    "url" => "/services",
-                    "controller" => "Service/ServicePutController.php",
-                    "method" => "PUT",
-                    "parameters" => [
-                        [
-                            "name" => "id",
-                            "type" => "int"
-                        ]
+                "name" => "service_update",
+                "url" => "/services",
+                "controller" => "Service/ServicePutController.php",
+                "method" => "PUT",
+                "parameters" => [
+                    [
+                        "name" => "id",
+                        "type" => "int"
                     ]
                 ]
             ],
             [
-                "name" => "service_detele",
+                "name" => "service_delete",
                 "url" => "/services",
                 "controller" => "Service/ServiceDeleteController.php",
                 "method" => "DELETE",

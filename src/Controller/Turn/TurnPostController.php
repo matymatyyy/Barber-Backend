@@ -17,8 +17,12 @@ final readonly class TurnPostController extends AuthMiddleware {
         $hourBegin = ControllerUtils::getPost("hourBegin");
         $hourEnd = ControllerUtils::getPost("hourEnd");
         $state = ControllerUtils::getPost("state");
-        $barberId  = ControllerUtils::getPost("barberId ");
-        $clientId  = ControllerUtils::getPost("clientId ");
+        $barberId  = ControllerUtils::getPost("barberId");
+        $clientId  = ControllerUtils::getPost("clientId");
+
+        $date = new DateTime($date);
+        $hourBegin = new DateTime( $hourBegin);
+        $hourEnd   = new DateTime( $hourEnd);
 
         $this->service->create(
             $date,

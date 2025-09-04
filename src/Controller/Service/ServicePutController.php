@@ -1,20 +1,20 @@
 <?php 
 
 use Src\Utils\ControllerUtils;
-use Src\Service\Service\ServiceUpdaterService;
+use Src\Service\Service\ServiceUpdateService;
 
 final readonly class ServicePutController {
-    private ServiceUpdaterService $service;
+    private ServiceUpdateService $service;
 
     public function __construct() {
-        $this->service = new ServiceUpdaterService();
+        $this->service = new ServiceUpdateService();
     }
 
     public function start(int $id): void 
     {
-        $name = ControllerUtils::getPost("name");
-        $code = ControllerUtils::getPost("code");
+        $type = ControllerUtils::getPost("type");
+        $price = ControllerUtils::getPost("price");
 
-        $this->service->update($name, $code, $id);
+        $this->service->update($type, $price, $id);
     }
 }

@@ -3,7 +3,8 @@
 use Src\Entity\Service\Service;
 use Src\Service\Service\ServicesSearcherService;
 
-final readonly class ServicesGetController {
+final readonly class ServicesGetController
+{
     private ServicesSearcherService $service;
 
     public function __construct() {

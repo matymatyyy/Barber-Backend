@@ -7,8 +7,8 @@ use DateTime;
 final class Turn{
     public function __construct(
         private readonly ?int $id,
-        private readonly ?int $barberId,
-        private readonly ?int $clientId,
+        private ?int $barberId,
+        private ?int $clientId,
         private DateTime $date,
         private DateTime $hourBegin,
         private DateTime $hourEnd,
