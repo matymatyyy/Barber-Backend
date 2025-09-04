@@ -1,13 +1,13 @@
 <?php 
 
 use Src\Utils\ControllerUtils;
-use Src\Service\Service\ServiceUpdaterService;
+use Src\Service\Service\ServiceUpdateService;
 
 final readonly class ServicePutController {
-    private ServiceUpdaterService $service;
+    private ServiceUpdateService $service;
 
     public function __construct() {
-        $this->service = new ServiceUpdaterService();
+        $this->service = new ServiceUpdateService();
     }
 
     public function start(int $id): void 

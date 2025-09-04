@@ -1,11 +1,14 @@
-<?php 
+<?php
+
+declare(strict_types = 1);
 
 namespace Src\Service\Service;
 
 use Src\Entity\Service\Service;
 use Src\Model\Service\ServiceModel;
 
-final readonly class ServicesSearcherService {
+final readonly class ServicesSearcherService
+{
     private ServiceModel $serviceModel;
 
     public function __construct() {

@@ -1,17 +1,17 @@
 networks:
-  programacionIII-chacabuco.network:
+  barberShop.network:
     driver: bridge
 
 services:
   php-apache:
     build: './build/php'
     restart: unless-stopped
-    container_name: programacionIII-chacabuco.php-apache
+    container_name: barberShop.php-apache
     tty: true
     depends_on:
       - mysql
     networks:
-      - programacionIII-chacabuco.network
+      - barberShop.network
     ports:
       - "91:80"
       - "443:443"
@@ -22,12 +22,12 @@ services:
   mysql:
     image: mysql:5
     restart: unless-stopped
-    container_name: programacionIII-chacabuco.mysql
+    container_name: barberShop.mysql
     tty: true
     ports:
       - "3310:3306"
     networks:
-      - programacionIII-chacabuco.network
+      - barberShop.network
     volumes:
       - "./build/mysql/mysql.cnf:/etc/mysql/conf.d/custom.cnf:ro"
       - "./data/mysql/dbdata:/var/lib/mysql"
@@ -39,14 +39,14 @@ services:
 
   phpmyadmin:
     image: phpmyadmin
-    container_name: programacionIII-chacabuco.phpmyadmin
+    container_name: barberShop.phpmyadmin
     tty: true
     depends_on:
       - mysql
     ports:
       - "8080:80"
     networks:
-      - programacionIII-chacabuco.network
+      - barberShop.network
     environment:
       PMA_HOST: mysql
       PMA_ARBITRARY: 1

@@ -30,21 +30,19 @@ final readonly class TurnRoutes
                 "method" => "POST"
             ],
             [
-                [
-                    "name" => "turn_update",
-                    "url" => "/turns",
-                    "controller" => "Turn/TurnPutController.php",
-                    "method" => "PUT",
-                    "parameters" => [
-                        [
-                            "name" => "id",
-                            "type" => "int"
-                        ]
+                "name" => "turn_update",
+                "url" => "/turns",
+                "controller" => "Turn/TurnPutController.php",
+                "method" => "PUT",
+                "parameters" => [
+                    [
+                        "name" => "id",
+                        "type" => "int"
                     ]
                 ]
             ],
             [
-                "name" => "turn_detele",
+                "name" => "turn_delete",
                 "url" => "/turns",
                 "controller" => "Turn/TurnDeleteController.php",
                 "method" => "DELETE",

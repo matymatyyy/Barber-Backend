@@ -6,7 +6,8 @@ namespace Src\Service\Service;
 
 use Src\Model\Service\ServiceModel;
 
-final readonly class ServiceUpdaterService {
+final readonly class ServiceUpdateService
+{
 
     private ServiceModel $model;
     private ServiceFinderService $finder;
@@ -29,6 +30,4 @@ final readonly class ServiceUpdaterService {
 
         $this->model->update($service);
     }
-
 }
-

@@ -19,6 +19,10 @@ final readonly class TurnPutController {
         $hourEnd = ControllerUtils::getPost("hourEnd");
         $state = ControllerUtils::getPost("state");
 
+        $date = new DateTime($date);
+        $hourBegin = new DateTime( $hourBegin);
+        $hourEnd   = new DateTime( $hourEnd);
+
         $this->service->update(
               $id,
         $barberId,

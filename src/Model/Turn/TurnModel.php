@@ -2,6 +2,7 @@
 
 namespace Src\Model\Turn;
 
+use DateTime;
 use Src\Model\DatabaseModel;
 use Src\Entity\Turn\Turn;
 
@@ -65,19 +66,18 @@ final readonly class TurnModel extends DatabaseModel {
         $query = <<<INSERT_QUERY
                         INSERT INTO
                             turns
-                        (id, id_barber, id_client, date, hour_begin, hour_end, state)
+                        (id_barber, id_client, date, hour_begin, hour_end, state)
                             VALUES
-                        (:id, :idBarber, :idClient, :date, :hourBegin, :hourEnd, :state)
+                        (:idBarber, :idClient, :date, :hourBegin, :hourEnd, :state)
                     INSERT_QUERY;
 
         $parameters = [
-            "id" => $turn->id(),
             "idBarber" => $turn->barberId(),
             'idClient' => $turn->clientId(),
-            'date' => $turn->date(),
-            'hourBegin' => $turn->hourBegin(),
-            'hourEnd' => $turn->hourEnd(),
-            'state' => $turn->state()
+            'date' => $turn->date()->format('Y-m-d H:i:s'),
+            'hourBegin' => $turn->hourBegin()->format('Y-m-d H:i:s'),
+            'hourEnd' => $turn->hourEnd()->format('Y-m-d H:i:s'),
+            'state' => $turn->state() ? 1 : 0
 
         ];
 
@@ -103,11 +103,11 @@ final readonly class TurnModel extends DatabaseModel {
         $parameters = [
             "idBarber" => $turn->barberId(),
             "idClient" => $turn->clientId(),
-            'date' => $turn->date(),
-            'hourBegin' => $turn->hourBegin(),
-            'hourEnd' => $turn->hourEnd(),
-            'state' => $turn->state(),
-            "id" => $turn->id()
+            'date' => $turn->date()->format('Y-m-d H:i:s'),
+            'hourBegin' => $turn->hourBegin()->format('Y-m-d H:i:s'),
+            'hourEnd' => $turn->hourEnd()->format('Y-m-d H:i:s'),
+            'state' => $turn->state() ? 1 : 0,
+            "id" => $turn->id() 
         ];
 
         $this->primitiveQuery($query, $parameters);
@@ -116,8 +116,8 @@ final readonly class TurnModel extends DatabaseModel {
     public function delete(int $id): void
     {
         $query = <<<DELETE_QUERY
-                    DELETE FROM
-                        turns   
+                    delete FROM
+                        turns
                     WHERE
                         id = :id
                 DELETE_QUERY;
@@ -135,13 +135,17 @@ final readonly class TurnModel extends DatabaseModel {
             return null;
         }
 
+        $date = new DateTime($primitive['date']);
+        $hourBegin = new DateTime($primitive['hour_begin']);
+        $hourEnd = new DateTime($primitive['hour_end']);
+
         return new Turn(
             $primitive['id'],
             $primitive['id_barber'],
             $primitive['id_client'],
-            $primitive['date'],
-            $primitive['hour_begin'],
-            $primitive['hour_end'],
+            $date,
+            $hourBegin,
+            $hourEnd,
             $primitive['state']
         );
     }

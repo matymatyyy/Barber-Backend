@@ -24,27 +24,25 @@ final readonly class ServiceRoutes
                 "method" => "GET"
             ],
             [
-                "name" => "services_create",
+                "name" => "service_create",
                 "url" => "/services",
                 "controller" => "Service/ServicePostController.php",
                 "method" => "POST"
             ],
             [
-                [
-                    "name" => "service_update",
-                    "url" => "/services",
-                    "controller" => "Service/ServicePutController.php",
-                    "method" => "PUT",
-                    "parameters" => [
-                        [
-                            "name" => "id",
-                            "type" => "int"
-                        ]
+                "name" => "service_update",
+                "url" => "/services",
+                "controller" => "Service/ServicePutController.php",
+                "method" => "PUT",
+                "parameters" => [
+                    [
+                        "name" => "id",
+                        "type" => "int"
                     ]
                 ]
             ],
             [
-                "name" => "service_detele",
+                "name" => "service_delete",
                 "url" => "/services",
                 "controller" => "Service/ServiceDeleteController.php",
                 "method" => "DELETE",

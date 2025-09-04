@@ -8,8 +8,8 @@ use Src\Model\Turn\TurnModel;
 use Src\Entity\Turn\Turn;
 use Src\Entity\Turn\Exception\TurnNotFoundException;
 
-final readonly class TurnFinderService {
-
+final readonly class TurnFinderService
+{
     private TurnModel $model;
 
     public function __construct() 
@@ -27,6 +27,4 @@ final readonly class TurnFinderService {
 
         return $turn;
     }
-
 }
-

@@ -7,8 +7,8 @@ namespace Src\Service\Turn;
 use DateTime;
 use Src\Model\Turn\TurnModel;
 
-final readonly class TurnUpdaterService {
-
+final readonly class TurnUpdaterService
+{
     private TurnModel $model;
     private TurnFinderService $finder;
 
@@ -41,6 +41,4 @@ final readonly class TurnUpdaterService {
 
         $this->model->update($turn);
     }
-
 }
-

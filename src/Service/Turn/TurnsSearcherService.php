@@ -5,7 +5,8 @@ namespace Src\Service\Turn;
 use Src\Entity\Turn\Turn;
 use Src\Model\Turn\TurnModel;
 
-final readonly class TurnsSearcherService {
+final readonly class TurnsSearcherService
+{
     private TurnModel $turnModel;
 
     public function __construct() {
