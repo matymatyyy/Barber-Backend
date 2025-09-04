@@ -5,7 +5,7 @@ namespace Src\Service\TurnConfigDay;
 use Src\Entity\TurnConfigDay\TurnConfigDay;
 use Src\Model\TurnConfigDay\TurnConfigDayModel;
 
-final readonly class TurnsConfigDaySearcherService {
+final readonly class TurnConfigDaySearcherService {
     private TurnConfigDayModel $turnModel;
 
     public function __construct() {

@@ -1,13 +1,13 @@
 <?php
 
 use Src\Entity\TurnConfigDay\TurnConfigDay;
-use Src\Service\TurnConfigDay\TurnsConfigDaySearcherService;
+use Src\Service\TurnConfigDay\TurnConfigDaySearcherService;
 
-final readonly class TurnsConfigDayGetController {
-    private TurnsConfigDaySearcherService $service;
+final readonly class TurnConfigDayGetController {
+    private TurnConfigDaySearcherService $service;
 
     public function __construct() {
-        $this->service = new TurnsConfigDaySearcherService();
+        $this->service = new TurnConfigDaySearcherService();
     }
 
     public function start(): void
