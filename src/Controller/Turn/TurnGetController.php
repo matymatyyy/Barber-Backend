@@ -1,13 +1,11 @@
 <?php 
 
-use Src\Middleware\AuthMiddleware;
 use Src\Service\Turn\TurnFinderService;
 
-final readonly class TurnGetController extends AuthMiddleware {
+final readonly class TurnGetController{
     private TurnFinderService $service;
 
     public function __construct() {
-        parent::__construct();
         $this->service = new TurnFinderService();
     }
 
