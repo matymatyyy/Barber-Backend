@@ -129,6 +129,21 @@ final readonly class TurnModel extends DatabaseModel {
         $this->primitiveQuery($query, $parameters);
     }
 
+    public function generateMonth(): void
+    {    //no funciona todavia
+        echo "la ruta funciona, el model no";
+        exit;
+        $query = <<<INSERT_QUERY
+                        INSERT INTO
+                            turns
+                        (id_barber, id_client, date, hour_begin, hour_end, state)
+                            VALUES
+                        (:idBarber, :idClient, :date, :hourBegin, :hourEnd, :state)
+                    INSERT_QUERY;
+
+        $this->primitiveQuery($query);
+    }
+
     private function toTurn(?array $primitive): ?Turn
     {
         if ($primitive === null) {
