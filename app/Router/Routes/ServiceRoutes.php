@@ -6,9 +6,9 @@ final readonly class ServiceRoutes
     {
         return [
             [
-                "name" => "services_get",
+                "name" => "service_get",
                 "url" => "/services",
-                "controller" => "Service/ServicesGetController.php",
+                "controller" => "Service/ServiceGetController.php",
                 "method" => "GET",
                 "parameters" => [
                     [
@@ -18,9 +18,9 @@ final readonly class ServiceRoutes
                 ]
             ],
             [
-                "name" => "service_get",
+                "name" => "services_get",
                 "url" => "/services",
-                "controller" => "Service/ServiceGetController.php",
+                "controller" => "Service/ServicesGetController.php",
                 "method" => "GET"
             ],
             [
