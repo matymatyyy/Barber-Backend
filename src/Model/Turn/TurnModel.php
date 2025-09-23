@@ -2,11 +2,13 @@
 
 namespace Src\Model\Turn;
 
+use DateInterval;
 use DateTime;
 use Src\Model\DatabaseModel;
 use Src\Entity\Turn\Turn;
 
 final readonly class TurnModel extends DatabaseModel {
+    private const string TIMEZONE = 'America/Argentina/Buenos_Aires';
 
     public function find(int $id): ?Turn
     {
@@ -130,18 +132,74 @@ final readonly class TurnModel extends DatabaseModel {
     }
 
     public function generateMonth(): void
-    {    //no funciona todavia
-        echo "la ruta funciona, el model no";
-        exit;
-        $query = <<<INSERT_QUERY
-                        INSERT INTO
-                            turns
-                        (id_barber, id_client, date, hour_begin, hour_end, state)
-                            VALUES
-                        (:idBarber, :idClient, :date, :hourBegin, :hourEnd, :state)
-                    INSERT_QUERY;
+    {
+        $tz = new \DateTimeZone(self::TIMEZONE);
+        $now = new DateTime('now', $tz);
 
-        $this->primitiveQuery($query);
+        $firstDay = new DateTime($now->format('Y-m-01 00:00:00'), $tz);
+        $lastDay  = (clone $firstDay)->modify('last day of this month')->setTime(23, 59, 59);
+
+        $query = "
+            SELECT 
+                tc.id as config_id,
+                tc.id_barber,
+                tcd.day as raw_day,
+                TIME(tcd.hour_begin) as hour_begin,
+                TIME(tcd.hour_end) as hour_end,
+                TIME(tcd.turn_time) as turn_time
+            FROM turns_config tc
+            JOIN turns_config_day tcd ON tcd.id_turns_config = tc.id
+        ";
+
+        $rows = $this->primitiveQuery($query);
+        
+        $intervalOneDay = new DateInterval('P1D');
+
+        $daysInNumber = $this->daysInNumbers($rows);
+
+        for ($date = clone $firstDay; $date <= $lastDay; $date->add($intervalOneDay)) {
+            $weekday = (int)$date->format('N');
+            
+            if (in_array($weekday,$daysInNumber)) {
+                $this->generateDaysTurns($rows[$weekday-2]);
+            }
+        }
+    }
+
+    private function generateDaysTurns(array $day): void
+    {
+        print_r($day);
+    }
+
+    private function daysInNumbers(array $days): array
+    {
+        $map = [
+            'lunes'     => 1,
+            'martes'    => 2,
+            'miercoles' => 3,
+            'jueves'    => 4,
+            'viernes'   => 5,
+            'sabado'    => 6,
+            'domingo'   => 7
+        ];
+
+        $resultado = [];
+
+        foreach ($days as $item) {
+            $day = is_array($item) && isset($item['raw_day']) ? $item['raw_day'] : $item;
+
+            if (!is_string($day)) continue;
+
+            $d = mb_strtolower(trim($day));
+            $d = strtr($d, ['á'=>'a','é'=>'e','í'=>'i','ó'=>'o','ú'=>'u','ü'=>'u','ñ'=>'n']);
+            $d = preg_replace('/[^\p{L}\p{N}]+/u', '', $d);
+
+            if (isset($map[$d])) {
+                $resultado[] = $map[$d];
+            }
+        }
+
+        return $resultado;
     }
 
     private function toTurn(?array $primitive): ?Turn
