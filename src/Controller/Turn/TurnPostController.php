@@ -1,10 +1,9 @@
 <?php 
 
 use Src\Utils\ControllerUtils;
-use Src\Middleware\AuthMiddleware;
 use Src\Service\Turn\TurnCreatorService;
 
-final readonly class TurnPostController extends AuthMiddleware {
+final readonly class TurnPostController {
     private TurnCreatorService $service;
 
     public function __construct() {

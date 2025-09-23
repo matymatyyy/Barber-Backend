@@ -52,6 +52,12 @@ final readonly class TurnRoutes
                         "type" => "int"
                     ]
                 ]
+                    ],
+                [
+                "name" => "turns_create_cronJob",
+                "url" => "/turns/generateMonth",
+                "controller" => "Turn/TurnGenerateMonthController.php",
+                "method" => "POST"
             ]
         ];
     }
