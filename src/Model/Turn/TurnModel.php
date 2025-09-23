@@ -161,14 +161,33 @@ final readonly class TurnModel extends DatabaseModel {
             $weekday = (int)$date->format('N');
             
             if (in_array($weekday,$daysInNumber)) {
-                $this->generateDaysTurns($rows[$weekday-2]);
+                $this->generateDaysTurns($rows[$weekday-2], $date);
             }
         }
     }
 
-    private function generateDaysTurns(array $day): void
+    private function generateDaysTurns(array $day, DateTime $time): void 
     {
-        print_r($day);
+        $barberId = (int)$day['id_barber'];
+        $hourBegin = new DateTime($day['hour_begin']);
+        $hourEnd   = new DateTime($day['hour_end']);
+        
+        $parts = explode(':', $day['turn_time']);
+        $turnInterval = new DateInterval("PT{$parts[0]}H{$parts[1]}M{$parts[2]}S");
+
+        for ($timeInit = clone $hourBegin; $timeInit <= $hourEnd; $timeInit->add($turnInterval)) {
+            $startTime = clone $timeInit;
+
+            $turn = Turn::create(
+                $time,
+                $startTime,
+                (clone $startTime)->add($turnInterval),
+                null,
+                $barberId
+            );
+
+            $this->insert($turn);
+        }
     }
 
     private function daysInNumbers(array $days): array
