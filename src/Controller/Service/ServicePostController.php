@@ -1,10 +1,9 @@
 <?php 
 
 use Src\Utils\ControllerUtils;
-use Src\Middleware\AuthMiddleware;
 use Src\Service\Service\ServiceCreatorService;
 
-final readonly class ServicePostController extends AuthMiddleware {
+final readonly class ServicePostController{
     private ServiceCreatorService $service;
 
     public function __construct() {
