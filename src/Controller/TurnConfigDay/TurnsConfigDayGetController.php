@@ -3,7 +3,7 @@
 use Src\Entity\TurnConfigDay\TurnConfigDay;
 use Src\Service\TurnConfigDay\TurnConfigDaySearcherService;
 
-final readonly class TurnConfigDayGetController {
+final readonly class TurnsConfigDayGetController {
     private TurnConfigDaySearcherService $service;
 
     public function __construct() {

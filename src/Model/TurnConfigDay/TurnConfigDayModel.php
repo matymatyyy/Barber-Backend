@@ -2,6 +2,7 @@
 
 namespace Src\Model\TurnConfigDay;
 
+use DateTime;
 use Src\Model\DatabaseModel;
 use Src\Entity\TurnConfigDay\TurnConfigDay;
 
@@ -13,7 +14,6 @@ final readonly class TurnConfigDayModel extends DatabaseModel {
                     SELECT
                         D.id,
                         D.id_turns_config,
-                        D.id_client,
                         D.day,
                         D.hour_begin,
                         D.hour_end,
@@ -40,7 +40,6 @@ final readonly class TurnConfigDayModel extends DatabaseModel {
                     SELECT
                         D.id,
                         D.id_turns_config,
-                        D.id_client,
                         D.day,
                         D.hour_begin,
                         D.hour_end,
@@ -65,7 +64,7 @@ final readonly class TurnConfigDayModel extends DatabaseModel {
         $query = <<<INSERT_QUERY
                         INSERT INTO
                             turns_config_day
-                        (id,
+                        (
                             id_turns_config,
                             day,
                             hour_begin,
@@ -73,7 +72,6 @@ final readonly class TurnConfigDayModel extends DatabaseModel {
                             turn_time)
                             VALUES
                         (
-                            :id,
                             :id_turns_config,
                             :day,
                             :hour_begin,
@@ -82,7 +80,6 @@ final readonly class TurnConfigDayModel extends DatabaseModel {
                     INSERT_QUERY;
 
         $parameters = [
-            "id" => $turnConfigDay->id(),
             "id_turns_config" => $turnConfigDay->turnConfigId(),
             'day' => $turnConfigDay->day(),
             'hour_begin' => $turnConfigDay->hourBegin()->format("Y-m-d H:i:s"),
@@ -100,8 +97,7 @@ final readonly class TurnConfigDayModel extends DatabaseModel {
                     UPDATE
                         turns_config_day
                     SET
-                       id_turns_config = :id_turns_config,
-                       id_client = :id_client,
+                        id_turns_config = :id_turns_config,
                         day = :day,
                         hour_begin = :hour_begin,
                         hour_end = :hour_end,
@@ -144,13 +140,17 @@ final readonly class TurnConfigDayModel extends DatabaseModel {
             return null;
         }
 
+         $turnTime = new DateTime($primitive['turn_time']);
+         $hourBegin = new DateTime($primitive['hour_begin']);
+         $hourEnd = new DateTime($primitive['hour_end']);
+
         return new TurnConfigDay(
             $primitive['id'],
-            $primitive['turn_config_day'],
+            $primitive['id_turns_config'],
             $primitive['day'],
-            $primitive['turn_time'],
-            $primitive['hour_begin'],
-            $primitive['hour_end'],
+            $turnTime,
+            $hourBegin,
+            $hourEnd,
         );
     }
 }
