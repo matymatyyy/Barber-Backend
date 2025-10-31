@@ -107,7 +107,7 @@ final readonly class TurnConfigDayModel extends DatabaseModel {
                     UPDATE_QUERY;
             
         $parameters = [
-            "turnConfigId" => $turnConfigDay->turnConfigId(),
+            "id_turns_config" => $turnConfigDay->turnConfigId(),
             'day' => $turnConfigDay->day(),
             'hour_begin' => $turnConfigDay->hourBegin()->format("Y-m-d H:i:s"),
             'hour_end' => $turnConfigDay->hourEnd()->format("Y-m-d H:i:s"),

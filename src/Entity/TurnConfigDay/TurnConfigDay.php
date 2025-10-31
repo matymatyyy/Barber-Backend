@@ -7,44 +7,44 @@ use DateTime;
 final class TurnConfigDay{
     public function __construct(
         private readonly ?int $id,
-        private readonly ?int $turnConfigId,
-        private readonly string $day,
-        private DateTime $turnTime,
+        private ?int $turnConfigId,
+        private string $day,
         private DateTime $hourBegin,
-        private DateTime $hourEnd
+        private DateTime $hourEnd,
+        private DateTime $turnTime
     ) {
     }
 
     public static function create(
         ?int $turnConfigId,
         string $day,
-        DateTime $turnTime,
         DateTime $hourBegin,
         DateTime $hourEnd,
+        DateTime $turnTime,
         ): self
     {
         return new self(null,
         $turnConfigId,
         $day,
-        $turnTime,
         $hourBegin,
         $hourEnd,
+        $turnTime,
         );
     }
 
     public function modify(
         ?int $turnConfigId,
         string $day,
-        DateTime $turnTime,
         DateTime $hourBegin,
-        DateTime $hourEnd
+        DateTime $hourEnd,
+        DateTime $turnTime
         ): void
     {
         $this->turnConfigId = $turnConfigId;
         $this->day = $day;
-        $this->turnTimne = $turnTime;
         $this->hourBegin = $hourBegin;
         $this->hourEnd = $hourEnd;
+        $this->turnTime = $turnTime;
     }
 
     public function id(): ?int

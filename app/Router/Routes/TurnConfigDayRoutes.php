@@ -30,16 +30,14 @@ final readonly class TurnConfigDayRoutes
                 "method" => "POST"
             ],
             [
-                [
-                    "name" => "turn_config_day_update",
-                    "url" => "/turns_config_day",
-                    "controller" => "TurnConfigDay/TurnConfigDayPutController.php",
-                    "method" => "PUT",
-                    "parameters" => [
-                        [
-                            "name" => "id",
-                            "type" => "int"
-                        ]
+                "name" => "turn_config_day_update",
+                "url" => "/turns_config_day",
+                "controller" => "TurnConfigDay/TurnConfigDayPutController.php",
+                "method" => "PUT",
+                "parameters" => [
+                    [
+                        "name" => "id",
+                        "type" => "int"
                     ]
                 ]
             ],

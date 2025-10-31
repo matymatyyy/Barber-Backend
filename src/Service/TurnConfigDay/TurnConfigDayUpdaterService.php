@@ -22,19 +22,21 @@ final readonly class TurnConfigDayUpdaterService {
         int $id,
         ?int $turnConfigId,
         string $day,
-        DateTime $turnTime,
         DateTime $hourBegin,
-        DateTime $hourEnd
+        DateTime $hourEnd,
+        DateTime $turnTime
     ): void 
+    
     {
+
         $turnConfigDay= $this->finder->find($id);
 
         $turnConfigDay->modify(
          $turnConfigId,
         $day,
-            $turnTime,
        $hourBegin,
-         $hourEnd
+         $hourEnd,
+            $turnTime
         );
 
         $this->model->update($turnConfigDay);
