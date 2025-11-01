@@ -58,7 +58,13 @@ final readonly class TurnRoutes
                 "url" => "/turns/generateMonth",
                 "controller" => "Turn/TurnGenerateMonthController.php",
                 "method" => "POST"
-            ]
+                ],
+                [
+                    "name"=> "turns_reservation",
+                    "url"=> "/turns/reservation",
+                    "controller"=> "Turn/TurnReservationController.php",
+                    "method"=> "PUT"
+                ]
         ];
     }
 }
