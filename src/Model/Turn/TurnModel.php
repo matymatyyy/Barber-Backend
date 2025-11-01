@@ -157,7 +157,8 @@ final readonly class TurnModel extends DatabaseModel {
                     WHEN 'Viernes' THEN 5
                     WHEN 'Sabado' THEN 6
                     WHEN 'Domingo' THEN 7
-                END
+                END,
+                tcd.hour_begin
         ";
 
         $configRows = $this->primitiveQuery($query);
@@ -166,7 +167,10 @@ final readonly class TurnModel extends DatabaseModel {
         foreach ($configRows as $config) {
             $dayNumber = $this->dayNameToNumber($config['raw_day']);
             if ($dayNumber !== null) {
-                $dayConfigs[$dayNumber] = $config;
+                if (!isset($dayConfigs[$dayNumber])) {
+                    $dayConfigs[$dayNumber] = [];
+                }
+                $dayConfigs[$dayNumber][] = $config;
             }
         }
         
@@ -176,8 +180,12 @@ final readonly class TurnModel extends DatabaseModel {
             $weekday = (int)$date->format('N');
             
             if (isset($dayConfigs[$weekday])) {
-                if (!$this->turnsExistForDate($date, $dayConfigs[$weekday]['id_barber'])) {
-                    $this->generateDaysTurns($dayConfigs[$weekday], $date);
+                $barberId = $dayConfigs[$weekday][0]['id_barber'];
+                
+                if (!$this->turnsExistForDate($date, $barberId)) {
+                    foreach ($dayConfigs[$weekday] as $config) {
+                        $this->generateDaysTurns($config, $date);
+                    }
                 }
             }
         }
