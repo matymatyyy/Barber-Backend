@@ -31,6 +31,9 @@ function startRouter(): Router
     include_once "Routes/BarberRoutes.php";
     $routes = array_merge($routes, BarberRoutes::getRoutes());
 
+    include_once "Routes/MercadoPagoRoutes.php";
+    $routes = array_merge($routes, MercadoPagoRoutes::getRoutes());
+
     $routesClass = [];
     foreach ($routes as $route) {
         $routesClass[] = Route::fromArray($route);
