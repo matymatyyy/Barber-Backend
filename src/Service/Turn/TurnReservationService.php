@@ -4,29 +4,29 @@ declare(strict_types = 1);
 
 namespace Src\Service\Turn;
 
-use Src\Service\Client\ClientFinderService;
+use Src\Service\Client\ClientFindByToken;
 
 final readonly class TurnReservationService {
 
     private TurnUpdaterService $service;
     private TurnFinderService $finder;
-    private ClientFinderService $clientFinderService;
+    private ClientFindByToken $clientFindByToken;
 
     public function __construct()
     {
         $this->service = new TurnUpdaterService();
         $this->finder = new TurnFinderService();
-        $this->clientFinderService = new ClientFinderService();
+        $this->clientFindByToken = new ClientFindByToken();
     }
 
     public function reservation(
         int $id,
-        int $clientId,
+        string $token,
     ): void
     {
         $turn = $this->finder->find($id);
 
-        $client = $this->clientFinderService->find($clientId);
+        $client = $this->clientFindByToken->find($token);
 
         $this->service->update(
             $turn->id(),

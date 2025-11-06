@@ -46,12 +46,11 @@ final readonly class ClientModel extends DatabaseModel {
                     FROM
                         clients C
                     WHERE
-                        C.token = :token AND :date <= C.token_auth_date
+                        C.token = :token
                 SELECT_QUERY;
 
         $parameters = [
-            'token' => $token,
-            'date' => date("Y-m-d H:i:s")
+            'token' => $token
         ];
 
         $result = $this->primitiveQuery($query, $parameters);

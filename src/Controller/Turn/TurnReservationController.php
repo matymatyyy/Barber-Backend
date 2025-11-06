@@ -13,11 +13,11 @@ readonly class TurnReservationController{
     public function start(): void 
     {
         $id = ControllerUtils::getPost("id");
-        $idClient = ControllerUtils::getPost("id_client");
+        $token = ControllerUtils::getPost("token");
 
         $this->service->reservation(
               $id,
-              $idClient
+              $token
         );
     }
 }
